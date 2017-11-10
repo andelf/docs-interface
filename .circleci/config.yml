@@ -14,7 +14,7 @@ jobs:
     steps:
       - checkout
 
-      - sudo apt-get install -y rsync
+      - run: sudo apt-get install -y rsync
 
       # Already in npm build script :)
       # - run: git submodule update --init --recursive --remote
