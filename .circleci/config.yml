@@ -14,6 +14,8 @@ jobs:
     steps:
       - checkout
 
+      - sudo apt-get install -y rsync
+
       # Already in npm build script :)
       # - run: git submodule update --init --recursive --remote
 
@@ -38,7 +40,7 @@ jobs:
           name: "Publish Website"
           command: |
             if [ "${CIRCLE_BRANCH}" == "circle-ci" ]; then
-              ls -lR dist
+              rsync -avz dist/ "${DEPLOY_USER}@${DEPLOY_HOST}:${DEPLOY_PATH}"
             fi
 
 
