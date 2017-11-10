@@ -35,6 +35,11 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
 
+
+      - add_ssh_keys:
+          fingerprints:
+            - "b6:fa:4a:76:8a:64:26:7b:1c:47:67:7d:5c:61:a0:ac"
+
       # deploy
       - deploy:
           name: "Publish Website"
