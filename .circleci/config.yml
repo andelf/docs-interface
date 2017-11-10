@@ -15,9 +15,7 @@ jobs:
       - checkout
 
       # Already in npm build script :)
-      # - run:
-      #     name: Checking out newest submodules
-      #     command: git submodule update --init --recursive --remote
+      # - run: git submodule update --init --recursive --remote
 
       # Download and cache dependencies
       - restore_cache:
