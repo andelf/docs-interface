@@ -35,17 +35,13 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
 
-
-      - add_ssh_keys:
-          fingerprints:
-            - "64:19:1a:f0:47:0b:23:e3:57:d8:d7:a2:4b:31:05:a3"
-
       # deploy
       - deploy:
           name: "Publish Website"
           command: |
             if [ "${CIRCLE_BRANCH}" == "circle-ci" ]; then
-              rsync -avz dist/ "${DEPLOY_USER}@${DEPLOY_HOST}:${DEPLOY_PATH}"
+              ssh-keyscan "${DEPLOY_HOST}" >> ~/.ssh/known_hosts ;
+              rsync -avz dist/ "${DEPLOY_USER}@${DEPLOY_HOST}:${DEPLOY_PATH}" ;
             fi
 
 
